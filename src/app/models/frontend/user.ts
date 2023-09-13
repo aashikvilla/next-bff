@@ -1,5 +1,5 @@
-export interface User {
+export type User = {
   address: string;
   fullname: string;
   phone: string;
-}
+};

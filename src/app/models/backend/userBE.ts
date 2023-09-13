@@ -1,4 +1,4 @@
-export interface UserBE {
+export type UserBE = {
   address: Address;
   id: number;
   email: string;
@@ -7,22 +7,22 @@ export interface UserBE {
   name: Name;
   phone: string;
   __v: number;
-}
+};
 
-export interface Address {
+export type Address = {
   geolocation: Geolocation;
   city: string;
   street: string;
   number: number;
   zipcode: string;
-}
+};
 
-export interface Geolocation {
+export type Geolocation = {
   lat: string;
   long: string;
-}
+};
 
-export interface Name {
+export type Name = {
   firstname: string;
   lastname: string;
-}
+};
