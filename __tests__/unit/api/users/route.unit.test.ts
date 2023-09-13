@@ -7,7 +7,7 @@ import { User } from "@/app/models/frontend/user";
 // Mocking the fetchData function
 jest.mock("../../../../src/app/apiService/apiService");
 
-describe("GET function", () => {
+describe("Get Users", () => {
   afterEach(() => {
     jest.resetAllMocks();
   });
