@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "test:bff": "jest --selectProjects bff",
+    "test:ui": "jest --selectProjects ui",
+    "test": "jest"
   },
   "dependencies": {
     "@types/node": "20.6.0",
