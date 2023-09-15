@@ -3,6 +3,7 @@ import { fetchData } from "../../../../src/app/apiService/apiService";
 import { BackendApiRoutes } from "@/app/apiService/BackendApiRoutes";
 import { fakeUserBEList } from "../../../__fixtures__/models/backend/userBE";
 import { User } from "@/app/models/frontend/user";
+import { ErrorMessages } from "@/app/constants/ErrorMessages";
 
 // Mocking the fetchData function
 jest.mock("../../../../src/app/apiService/apiService");
@@ -12,7 +13,7 @@ describe("Get Users", () => {
     jest.resetAllMocks();
   });
 
-  it("GET should call the fetchData with correct parameters", async () => {
+  it("Should call the fetchData with correct parameters and return modified users", async () => {
     let fakeUsers = fakeUserBEList();
     (fetchData as jest.MockedFunction<typeof fetchData>).mockResolvedValue(
       fakeUsers
@@ -20,13 +21,12 @@ describe("Get Users", () => {
 
     let response = await GET();
     let result = await response?.json();
-    console.log("result", result);
 
     expect(fetchData).toHaveBeenCalledWith(BackendApiRoutes.Users.GetAll, {
       cache: "no-cache",
     });
 
-    //TODO: compare the result
+    //compare with expected result
     let expectedUsers: User[] = fakeUsers.map((user) => ({
       address: `${user.address.street} , ${user.address.city}, ${user.address.zipcode}`,
       fullname: `${user.name.firstname} ${user.name.lastname}`,
@@ -36,10 +36,10 @@ describe("Get Users", () => {
     expect(result).toEqual(expectedUsers);
   });
 
-  it("should handle error", async () => {
-    (fetchData as jest.Mock).mockRejectedValue(new Error("Fetch error"));
+  it("Should handle error", async () => {
+    (fetchData as jest.Mock).mockRejectedValue(new Error());
 
-    const response = await GET();
+    let response = await GET();
 
     expect(fetchData).toHaveBeenCalledWith(BackendApiRoutes.Users.GetAll, {
       cache: "no-cache",
@@ -48,7 +48,7 @@ describe("Get Users", () => {
     let result = await response?.json();
 
     expect(result).toEqual({
-      message: "Failed to fetch users",
+      message: ErrorMessages.UserApiFailure,
     });
   });
 });
