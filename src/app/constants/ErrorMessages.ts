@@ -6,4 +6,5 @@ export const ErrorMessages = {
   FectchDataException: "Error in FectchData",
   UserApiFailure: "Failed to fetch users",
   NotesApiFailure: "Failed to fetch notes",
+  DeleteNotesApiFailure: "Failed to delete note",
 };

@@ -4,6 +4,8 @@ import { ErrorMessages } from "@/app/constants/ErrorMessages";
 import { Note } from "@/app/models/frontend/note";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "auto";
+
 export async function GET(req: NextRequest) {
   try {
     let notes = await fetchData<Note[]>(BackendApiRoutes.Notes.GetAll);
