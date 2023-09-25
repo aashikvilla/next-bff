@@ -13,8 +13,10 @@ export async function fetchData<T>(
       console.log("url", route, "error", errorData);
       throw new Error(ErrorMessages.FetchApiFailure(res.status, errorData));
     }
+    let result = await res.json();
+    console.log(route ," - result",result);
 
-    return (await res.json()) as Promise<T>;
+    return (result) as Promise<T>;
   } catch (error) {
     console.error(ErrorMessages.FectchDataException, error);
     throw error;

@@ -2,6 +2,7 @@ import { Note } from "@/app/models/frontend/note";
 import { deleteNote, getNotes, getPaginatedNotes } from "./noteService";
 import NoteLayout from "./NoteLayout";
 import { PaginationResult } from "@/app/models/frontend/paginationResult";
+import { redirect } from "next/navigation";
 export const dynamic = "force-dynamic";
 
 interface INoteProps {
@@ -13,10 +14,12 @@ async function Notes({ searchParams }: INoteProps) {
     typeof searchParams.pageNumber === "string"
       ? Number(searchParams.pageNumber)
       : 1;
-  const pageSize =
-    typeof searchParams.pageSize === "string"
-      ? Number(searchParams.pageSize)
-      : 5;
+      console.log("PN", pageNumber)
+
+      if(isNaN(pageNumber) || pageNumber<=0){
+        redirect('/notes');
+      }
+  const pageSize = 5;
 
   var notes: PaginationResult<Note> = await getPaginatedNotes(
     pageNumber,

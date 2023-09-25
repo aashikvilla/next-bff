@@ -23,7 +23,7 @@ export async function deleteNote(id: string) {
 
 export async function getPaginatedNotes(pageNumber: number, pageSize: number) {
   return fetchData<PaginationResult<Note>>(
-    BackendApiRoutes.Notes.GetNotesForUserWithPagination(pageNumber, pageSize),
+    BffApiRoutes.Notes.GetPaginatedNotes(pageNumber, pageSize),
     {
       cache: "no-cache",
     }
