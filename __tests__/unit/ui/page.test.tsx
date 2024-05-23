@@ -1,4 +1,4 @@
-import Home from "@/app/page";
+import Home from "@/app/(ui)/page";
 import { render, screen } from "@testing-library/react";
 
 describe("Home Page", () => {

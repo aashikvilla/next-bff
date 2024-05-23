@@ -5,6 +5,10 @@ export const BackendApiRoutes = {
     GetAll: FAKEAPI_URL + "/users",
   },
   Notes: {
-    GetAll: NOTESAPP_URL + "/notes",
+    GetAll: NOTESAPP_URL + "/Note/GetNotesForUser/64b702c4576ee1a2851b73a9",
+    Delete: (id: string) => NOTESAPP_URL + `/Note/DeleteNote/${id}`,
+    GetNotesForUserWithPagination: (pageNumber: number, pageSize: number) =>
+      NOTESAPP_URL +
+      `/Note/GetNotesForUserWithPagination/64b702c4576ee1a2851b73a9?pageNumber=${pageNumber}&pagesize=${pageSize}`,
   },
 };
